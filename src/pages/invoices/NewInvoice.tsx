@@ -15,6 +15,13 @@ interface LineItem {
   amount: number;
 }
 
+type LineItemField = {
+  description: string;
+  quantity: number;
+  rate: number;
+  amount: number;
+};
+
 const NewInvoice = () => {
   const { toast } = useToast();
   const [lineItems, setLineItems] = useState<LineItem[]>([
@@ -44,7 +51,7 @@ const NewInvoice = () => {
 
   const updateLineItem = (
     index: number,
-    field: keyof LineItem,
+    field: keyof LineItemField,
     value: string | number
   ) => {
     const newLineItems = [...lineItems];
@@ -57,8 +64,8 @@ const NewInvoice = () => {
         field === "quantity" ? numValue : item.quantity,
         field === "rate" ? numValue : item.rate
       );
-    } else {
-      item[field] = value;
+    } else if (field === "description") {
+      item[field] = value as string;
     }
 
     newLineItems[index] = item;
