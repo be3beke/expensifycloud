@@ -1,10 +1,13 @@
 
 import { motion } from "framer-motion";
-import { ArrowUp, ArrowDown, DollarSign, FileText } from "lucide-react";
+import { ArrowUp, ArrowDown, DollarSign, FileText, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 
 const Index = () => {
+  const navigate = useNavigate();
   const metrics = [
     {
       title: "Total Revenue",
@@ -39,16 +42,25 @@ const Index = () => {
   return (
     <DashboardLayout>
       <div className="space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-3xl font-semibold text-gray-900">Dashboard</h1>
-          <p className="mt-2 text-gray-600">
-            Welcome back! Here's an overview of your business.
-          </p>
-        </motion.div>
+        <div className="flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-3xl font-semibold text-gray-900">Dashboard</h1>
+            <p className="mt-2 text-gray-600">
+              Welcome back! Here's an overview of your business.
+            </p>
+          </motion.div>
+          <Button
+            onClick={() => navigate("/invoices/new")}
+            className="hover:bg-emerald-600"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            New Invoice
+          </Button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {metrics.map((metric, index) => (
