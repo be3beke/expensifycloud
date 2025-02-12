@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUp, ArrowDown, DollarSign, FileText } from "lucide-react";
+import { cn } from "@/lib/utils";
 import DashboardLayout from "@/components/DashboardLayout";
 
 const Index = () => {
